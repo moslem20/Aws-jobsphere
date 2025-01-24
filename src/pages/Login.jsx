@@ -8,10 +8,21 @@ const Login = ({ handleAuthentication }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+
+    if (email.trim() === '' || password.trim() === '') {
+      alert('Please fill in both fields.');
+      return;
+    }
+
     if (email === 'user@example.com' && password === 'password') {
       // Save user data to local storage
       localStorage.setItem('user', JSON.stringify({ email }));
-      handleAuthentication(true);
+
+      // Ensure authentication state is updated
+      if (handleAuthentication && typeof handleAuthentication === 'function') {
+        handleAuthentication(true);
+      }
+
       navigate('/dashboard');
     } else {
       alert('Invalid credentials, please try again.');
