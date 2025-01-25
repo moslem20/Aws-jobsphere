@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
 
-const API_URL = 'https://w42zvst3nj.execute-api.us-east-1.amazonaws.com/prod';
+const API_URL = 'https://mb543tz9be.execute-api.us-east-1.amazonaws.com/prod-sim/simulation';
 
 export const startSimulation = async (userId, answers) => {
-  try {
-      const response = await fetch(API_URL, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json', // Ensure this matches what the backend expects
-          },
-          body: JSON.stringify({ userId, answers }),
-      });
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ userId, answers })
+        });
 
-      if (!response.ok) {
-          const errorText = await response.text(); // Log the error response
-          console.error('API response error:', errorText);
-          throw new Error('Error submitting data');
-      }
+        if (!response.ok) {
+            throw new Error('Error submitting data');
+        }
 
-      return await response.json();
-  } catch (error) {
-      console.error('API error:', error);
-      throw error;
-  }
+        return await response.json();
+    } catch (error) {
+        console.error('API error:', error);
+        throw error;
+    }
 };
 
 
