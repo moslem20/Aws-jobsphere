@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const API_URL = 'https://mb543tz9be.execute-api.us-east-1.amazonaws.com/prod-sim/simulation';
+const API_URL = 'https://mb543tz9be.execute-api.us-east-1.amazonaws.com/prod-sim';
 
 export const startSimulation = async (userId, answers) => {
     try {
